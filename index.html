@@ -14,32 +14,49 @@
             $('#opup_close').click(()=>{
                 $('#popup').css({'display':'none'})
             })
+            $('#menu>li').mouseenter(function(){
+                $('.sub, #menu_bg').stop().show()
+            })
+            $('#menu>li').mouseleave(function(){
+                $('.sub, #menu_bg').stop().hide()
+            })
+            $('.sub>li').mouseenter(function(){
+                $(this).css({'font-weight':'700'}).siblings().css({'font-weight':'400'})
+            })
+            $('#slide_btn>li').click(function(){
+                $(this).css({'width':'40px','opacity':'1'}).siblings().css({'width':'10px','opacity':'0.5'})
+                $('#slide_wrap').animate({'left':($(this).index()*-100)+'%'})
+            })
         })
     </script>
     <style>
         *{padding: 0; margin: 0; text-decoration: none; list-style: none; font-family: 'Inter', sans-serif;}
         #header_dum{width: 100%; height: 90px;}
-        header{width: 100%; height: 90px;  background-color: #fff; overflow: hidden; position: fixed; top: 0; left: 0; z-index: 999;}
-        #header_box{width: 1200px; height: 70px; background-color: #fff; margin: auto; margin-top: 10px;}
-        #logo{width: 80px; height: 20px; float: left; margin-top: 25px;}
-        #logo>img{height: 20px; width: 80px; vertical-align: top;}
-        #menu{width: 700px; height: 20px; line-height: 20px;  float: left; margin-top: 25px; margin-left: 20px;}
-        #menu>li{float: left; margin-right: 75px; font-weight: 700; font-size: 14px;}
-        #menu>li:first-child{margin-left: 15px;}
+        header{width: 100%; height: 90px;  background-color: #fff;  position: fixed; top: 0; left: 0; z-index: 999; border-bottom: 1px solid #eee; box-sizing: border-box;}
+        #header_box{width: 1200px; height: 70px; background-color: #fff; margin: auto; }
+        #logo{width: 80px; height: 90px; float: left; line-height: 90px; cursor: pointer;}
+        #logo>img{height: 20px; width: 80px;}
+        #menu{width: 700px; height: 90px; line-height: 90px;  float: left; margin-left: 40px; cursor: pointer;}
+        #menu>li{float: left; width: 20%; font-weight: 400; font-size: 16px; position: relative;}
         #menu>li:nth-child(3){position: relative;}
         #menu>li:nth-child(3)>img{position: absolute; bottom: 100%; left: 2px;}
-        #menu>li:last-child{margin-right: 0;}
+        .sub{position: absolute; width: 100%; height: 300px; top: 90px; left: 0; background-color: #fff; z-index: 9999; display: none;}
+        .sub>li{margin-top: 20px; line-height: 30px;}
+        #menu>#menu_bg{width: 100%; position: absolute; top:90px; left: 0; background-color: #fff; height: 300px; display: none;}
         #login{ height: 35px; line-height: 35px;  float: right; margin-top: 20px;}
         #login>li{float: left; margin-left: 15px; font-size: 14px;}
         #login>li>img{ height: 35px;}
         #login>li:last-child{height: 35px; width: 77px; background-color: #faed72; border-radius: 3px; text-align: center;}
-        #slide{width: 100%; height: 600px; background: url(images/bigbnr_pc_yafit.png) center no-repeat;}
-        #slide_box{width: 1200px; height: 600px;  margin: auto; position: relative;}
+        #slide{width: 100%; height: 600px; border: 1px solid #000;}
+        #slide_box{width: 100%; height: 600px; position: relative; overflow: hidden;}
+        #slide_wrap{width: 700%; height: 100%; position: absolute; top: 0; left: 0;}
+        #slide_wrap>li{width: 14.28%; float: left;}
+        #slide_wrap>li>img{width: 100%;}
         #slide_prebtn{position: absolute; left: -100px; top: 0; bottom: 0; margin: auto;}
         #slide_nextbtn{position: absolute; right: -100px; top: 0; bottom: 0; margin: auto;}
-        #slide_btn{width: 300px; height: 30px;  position: absolute; left: 0; right: 0; bottom: 50px; margin: auto; text-align: center; line-height: 30px;}
-        #slide_btn>li{width: 10px; height: 10px; border-radius: 12px; background-color: #fff; opacity: 0.5; display: inline-block; }
-        #slide_btn>li:nth-child(1){ width: 40px; opacity: 1;}
+        #slide_box>#slide_btn{width: 300px; height: 30px;  position: absolute; left: 0; right: 0; bottom: 50px; margin: auto; text-align: center; line-height: 30px; border: 1px solid #000; background-color: red;}
+        #slide_box>#slide_btn>li{width: 10px; height: 10px; border-radius: 12px; background-color: #fff; opacity: 0.5; display: inline-block; cursor: pointer;}
+        #slide_box>#slide_btn>li:nth-child(1){ width: 40px; opacity: 1;}
         #university{width: 100%;height: 583px; background-color: #f7f7fc; overflow: hidden;}
         #university_box{width: 1200px; height: 500px;  margin: auto; margin-top: 42px; position: relative;}
         #university_box>h2{font-size: 35px; margin-top: 50px; padding-top: 50px;}
@@ -110,8 +127,8 @@
 
         #buy_btn{width: 200px; position: fixed; left: 5.5%; bottom: 7%; z-index: 999; }
         #buy_btn>img{width: 100%; vertical-align: top;}
-        #quick{position: fixed; top: 120px; right: 30px; z-index: 9990; width: 170px;}
-        #popup{width: 370px; height: 750px; position: absolute; top: 0; right: 10px; box-shadow: 0 0  30px rgba(0, 0, 0, 0.4); z-index: 9999; background-color: #fff;}
+        #quick{position: fixed; top: 120px; right: 30px; z-index: 998; width: 170px;}
+        #popup{width: 370px; height: 750px; position: absolute; top: 0; right: 10px; box-shadow: 0 0  30px rgba(0, 0, 0, 0.4); z-index: 999; background-color: #fff; display: none;}
         #popup_title{width: 100%; height: 56px; background-color: #000; color: #fff; font-size: 14px; text-align: center; line-height: 56px; cursor: pointer;}
         #popup_title>img{position: absolute; top: 16px; right: 14px; width: 20px;}
         #popup_img{width: 100%; padding: 15px; box-sizing: border-box; cursor: pointer;}
@@ -138,12 +155,45 @@
     <header>
         <div id="header_box">
             <h1 id="logo"><img src="icons/logo.png" alt=""></h1>
-            <ul id="menu">
-                <li>입학안내</li>
-                <li>야나두 영어</li>
-                <li>야나두 핏 <img src="icons/KakaoTalk_20220126_105039401.png" alt=""></li>
-                <li>야나두 클래스</li>
-                <li>이벤트</li>
+            <ul id="menu"><li>입학 안내
+                    <ul class="sub">
+                        <li>입학 안내</li>
+                        <li>입학 필수강의</li>
+                        <li>야나두 소개</li>
+                    </ul>
+                </li>
+                <li>야나두 영어
+                    <ul class="sub">
+                        <li>시그니처 패키지</li>
+                        <li>밀착캐어 패키지</li>
+                        <li>영어 레벨테스트</li>
+                        <li>수강후기</li>
+                    </ul>
+                </li>
+                <li>야나두 핏 <img src="icons/KakaoTalk_20220126_105039401.png" alt="">
+                    <ul class="sub">
+                    <li>프리미엄 패키지</li>
+                    <li>라이트 패키지</li>
+                    <li>무료체험 패키지</li>
+                    <li>운동 성공률 예측</li>
+                </ul></li>
+                <li>야나두 전체보기
+                    <ul class="sub">
+                        <li>야나두 영어</li>
+                        <li>야나두 머니</li>
+                        <li>야나두 커리어</li>
+                        <li>전체보기</li>
+                    </ul>
+                </li>
+                <li>이벤트
+                    <ul class="sub">
+                        <li>전체 이벤트 보기</li>
+                        <li>힘나쏭 챌린지</li>
+                        <li>티켓팅 챌린지</li>
+                        <li>유캔두 다이어트</li>
+                    </ul>
+                </li>
+                <li id="menu_bg"></li>
             </ul>
             <ul id="login">
                 <li><img src="icons/header_cart.png" alt=""></li>
@@ -153,10 +203,18 @@
     </header>
     <div id="slide">
         <div id="slide_box">
+            <ul id="slide_wrap">
+                <li><img src="images/bigbnr_pc_firstSale.png" alt=""></li>
+                <li><img src="images/bigbnr_pc_yafit.png" alt=""></li>
+                <li><img src="" alt=""></li>
+                <li><img src="" alt=""></li>
+                <li><img src="" alt=""></li>
+                <li><img src="" alt=""></li>
+                <li><img src="" alt=""></li>
+            </ul>
             <img src="icons/mainslide_prev.png" alt="" id="slide_prebtn">
             <img src="icons/mainslide_next.png" alt="" id="slide_nextbtn">
             <ul id="slide_btn">
-                <li></li>
                 <li></li>
                 <li></li>
                 <li></li>
